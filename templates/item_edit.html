@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ item.name }} - Edit{% endblock %}
+
+{% block body %}
+<h2>{{item.name}} - Edit</h2>
+
+<form action= "/edit" method="POST">
+    
+    <label for="sku">SKU:</label>   
+    <input type="text" readonly="readonly" id="sku" name="sku" value="{{item.sku}}" required>
+    *SKU cannot be edited
+    <br>
+    <br>
+    
+    <label for="name">Name:</label>   
+    <input type="text" id="name" name="name" value="{{item.name}}" required>
+    <br>
+    <br>
+
+    <label for="description">Description:</label>
+    <br>
+    <textarea id="description" name="description" rows="4" cols="50">
+    {{item.description}}
+    </textarea>
+    <br>
+    <br>
+
+    <label for="quantity">Quantity:</label>   
+    <input type="text" id="quantity" name="quantity" value="{{item.quantity}}" required>
+    <br>
+    <br>
+
+    <label for="unit">Unit:</label>   
+    <input type="text" id="unit" name="unit" value="{{item.unit}}" required>
+    <br>
+    <br>
+    
+    <label for="unit_cost">Unit Cost:</label>   
+    <input type="text" id="unit_cost" name="unit_cost" value="{{item.unit_cost}}" required>
+    <br>
+    <br>
+    
+    <label for="warehouse">Warehouse:</label>
+    <select name="warehouse" id="warehouse" required>
+      {% for warehouse in warehouses %}
+        {% if item.warehouse == warehouse %}
+          <option value={{warehouse.warehouse_id}} selected>{{warehouse.city_name}}({{warehouse.city_code}})</option>
+        {% else %}
+          <option value={{warehouse.warehouse_id}}>{{warehouse.city_name}}({{warehouse.city_code}})</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+    <br>
+    <br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+
+
+
+{% endblock %}

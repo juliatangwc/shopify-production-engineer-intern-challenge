@@ -1,0 +1,25 @@
+[
+    {
+        "city_code": "ATL",
+        "city_name": "Atlanta"
+    },
+    {
+        "city_code": "CHI",
+        "city_name": "Chicago"
+    },
+    {
+        "city_code": "LAS",
+        "city_name": "Los Angeles"
+    },
+    {
+        "city_code": "HOU",
+        "city_name": "Houston"
+    },
+    {
+        "city_code": "MEM",
+        "city_name": "Memphis"
+    }
+]
+    
+
+   
