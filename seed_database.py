@@ -4,11 +4,12 @@
 import os
 import json
 import server
+import helper
 
 from model import connect_to_db, db, Inventory, Warehouse
 
-os.system("dropdb inventory")
-os.system('createdb inventory')
+os.system("dropdb inventory_production")
+os.system('createdb inventory_production')
 
 connect_to_db(server.app)
 db.create_all()
@@ -21,8 +22,11 @@ with open('data/warehouse.json') as f:
 for warehouse in warehouse_data:
     city_code = warehouse['city_code']
     city_name = warehouse['city_name']
+    coordinates = helper.get_city_geocode(city_name)
+    lon = coordinates['lon']
+    lat = coordinates['lat']
 
-    new_warehouse = Warehouse.create_warehouse (city_code, city_name)
+    new_warehouse = Warehouse.create_warehouse (city_code, city_name, lon, lat)
     db.session.add(new_warehouse)
 
 # Load inventory data from JSON file

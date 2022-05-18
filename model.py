@@ -56,6 +56,8 @@ class Warehouse(db.Model):
                                 primary_key=True)
     city_code = db.Column(db.String)
     city_name = db.Column(db.String)
+    lon = db.Column(db.String)
+    lat = db.Column(db.String)
 
     inventory_item = db.relationship('Inventory', back_populates="warehouse")
 
@@ -63,10 +65,10 @@ class Warehouse(db.Model):
         return f"<Warehouse ID={self.warehouse_id} Location={self.city_name}"
 
     @classmethod
-    def create_warehouse(cls, city_code, city_name):
+    def create_warehouse(cls, city_code, city_name, lon, lat):
         """Create and return a warehouse instance."""
 
-        return cls(city_code=city_code, city_name=city_name)
+        return cls(city_code=city_code, city_name=city_name, lon=lon, lat=lat)
     
     @classmethod
     def get_all_warehouses_by_city(cls):
@@ -92,7 +94,7 @@ class Warehouse(db.Model):
         return cls.query.get(warehouse_id)
 
 
-def connect_to_db(flask_app, db_uri="postgresql:///inventory", echo=True):
+def connect_to_db(flask_app, db_uri="postgresql:///inventory_production", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False

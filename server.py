@@ -6,16 +6,10 @@ from model import connect_to_db, db, Inventory, Warehouse
 import helper
 
 from jinja2 import StrictUndefined
-from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
-
-#Open weather updates every hour
-#Store weather data by city to save on API calls
-WEATHER_TIMESTAMP = None
-WEATHER_CACHE = {}
 
 
 @app.route("/")
@@ -164,7 +158,7 @@ def show_warehouse_details(warehouse_id):
     
     warehouse = Warehouse.get_warehouse_by_id(warehouse_id)
 
-    
+
 
     if warehouse:
         return render_template("warehouse_details.html", warehouse=warehouse)
@@ -187,7 +181,10 @@ def add_warehouse():
 
     #Validate add warehouse form input fields
     if helper.validate_add_warehouse_input(city_name, city_code):
-        warehouse = Warehouse.create_warehouse(city_code, city_name)
+        coordinates = helper.get_city_geocode(city_name)
+        lon = coordinates['lon']
+        lat = coordinates['lat']
+        warehouse = Warehouse.create_warehouse(city_code, city_name, lon, lat)
         db.session.add(warehouse)
         db.session.commit()
         flash ("New warehouse added.")
