@@ -85,6 +85,8 @@ Users can delete a warehouse.
 
 To run the inventory web app, you will need to have Python 3 and PostgreSQL installed on your machine.
 
+Obtain an API key from [OpenWeather](https://openweathermap.org/)
+
 **Running the inventory web app on your machine**
 
 Clone this repository
