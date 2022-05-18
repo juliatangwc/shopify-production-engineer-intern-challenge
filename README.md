@@ -8,7 +8,7 @@ An inventory tracking web application for a logistics company with basic CRUD fu
 
 Additional features:
 - Ability to create warehouses and assign inventory to specific locations
-- Display of current weather condition for warehouse locations
+- Display of current weather condition for warehouse locations (using the Open Weather API)
 
 ## Contents
 - [Tech Stack](#tech-stack)
