@@ -1,4 +1,4 @@
-# Shopify Backend Intern Challenge
+# Shopify Production Engineer Intern Challenge
 
 An inventory tracking web application for a logistics company with basic CRUD functionalities:
 - Create inventory items
@@ -6,7 +6,9 @@ An inventory tracking web application for a logistics company with basic CRUD fu
 - Delete inventory items
 - View a list of inventory items
 
-The app includes an additional feature to create warehouses and assign inventory to specific locations.
+Additional features:
+- Ability to create warehouses and assign inventory to specific locations
+- Display of current weather condition for warehouse locations
 
 ## Contents
 - [Tech Stack](#tech-stack)
@@ -39,7 +41,7 @@ Backend algorithms validate inputs before committing to database.
 
 **View all inventory items**
 
-Users can view all inventory items in a table, sorted by SKU. 
+Users can view all inventory items in a table, sorted by SKU. Warehouse and weather information are also displayed.
 
 **View details of an inventory item**
 
@@ -63,11 +65,11 @@ Users can create a new warehouse by entering its city name and city code. Backen
 
 **View all warehouses**
 
-Users can view all existing warehouses in a table, sorted by warehouse ID.
+Users can view all existing warehouses in a table, sorted by warehouse ID. Information displayed includes warehouse ID, city name and code, and current weather information.
 
 **View details of a warehouse**
 
-Users can view details of a warehouse by clicking on its warehouse ID or city name. Details include city name, city code and all inventory in the particular warehouse.
+Users can view details of a warehouse by clicking on its warehouse ID or city name. Details include city name, city code, current weather condition, and all inventory in the particular warehouse.
 
 **Delete a warehouse**
 
@@ -87,7 +89,7 @@ To run the inventory web app, you will need to have Python 3 and PostgreSQL inst
 
 Clone this repository
 ```shell
-git clone https://github.com/juliatangwc/shopify-coding-challenge.git
+git clone https://github.com/juliatangwc/shopify-production-engineer-intern-challenge.git
 ```
 Optional: Create and activate a virtual environment using virtualenv
 ```shell
@@ -101,7 +103,7 @@ pip3 install -r requirements.txt
 ```
 Create your database & seed sample data
 ```shell
-createdb inventory
+createdb inventory_production
 python3 seed_database.py
 ```
 Run the app on localhost
