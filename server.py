@@ -6,10 +6,16 @@ from model import connect_to_db, db, Inventory, Warehouse
 import helper
 
 from jinja2 import StrictUndefined
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
+
+#Open weather updates every hour
+#Store weather data by city to save on API calls
+WEATHER_TIMESTAMP = None
+WEATHER_CACHE = {}
 
 
 @app.route("/")
@@ -157,6 +163,8 @@ def show_warehouse_details(warehouse_id):
     """Show details on a particular warehouse."""
     
     warehouse = Warehouse.get_warehouse_by_id(warehouse_id)
+
+    
 
     if warehouse:
         return render_template("warehouse_details.html", warehouse=warehouse)
