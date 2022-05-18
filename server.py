@@ -61,7 +61,13 @@ def show_inventory():
 
     inventory = Inventory.get_all_inventory()
     
-    return render_template('inventory.html', inventory = inventory)
+    warehouses = Warehouse.get_all_warehouses_by_id()
+    weather = {}
+    for warehouse in warehouses:
+        weather_info = helper.get_weather_info(warehouse)
+        weather[warehouse.warehouse_id] = weather_info
+        
+    return render_template('inventory.html', inventory = inventory, weather=weather)
 
 @app.route("/inventory/<sku>")
 def show_item_details(sku):
@@ -150,7 +156,12 @@ def locate_item():
 def show_warehouse_list():
     """Show a list of all warehouse."""
     warehouses = Warehouse.get_all_warehouses_by_id()
-    return render_template("warehouse.html", warehouses=warehouses)
+    
+    weather = {}
+    for warehouse in warehouses:
+        weather_info = helper.get_weather_info(warehouse)
+        weather[warehouse.warehouse_id] = weather_info
+    return render_template("warehouse.html", warehouses=warehouses, weather=weather)
 
 @app.route("/warehouse/<warehouse_id>")
 def show_warehouse_details(warehouse_id):
@@ -158,10 +169,9 @@ def show_warehouse_details(warehouse_id):
     
     warehouse = Warehouse.get_warehouse_by_id(warehouse_id)
 
-
-
     if warehouse:
-        return render_template("warehouse_details.html", warehouse=warehouse)
+        weather = helper.get_weather_info(warehouse)
+        return render_template("warehouse_details.html", warehouse=warehouse, weather=weather)
     else:
         flash ("Warehouse does not exist. Please see complete list of current warehouses.")
         return redirect("/warehouse")

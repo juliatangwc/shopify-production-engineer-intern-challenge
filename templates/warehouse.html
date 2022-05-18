@@ -7,6 +7,7 @@
         <tr>
             <th>Warehouse ID</th>
             <th>Location</th>
+            <th>Current weather</th>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +15,8 @@
         <tr>
             <td><a href="/warehouse/{{warehouse.warehouse_id}}">{{warehouse.warehouse_id}}</a></td>
             <td><a href="/warehouse/{{warehouse.warehouse_id}}">{{warehouse.city_name}} ({{warehouse.city_code}})</a></td>
+            {% set id = warehouse.warehouse_id %}
+            <td>{{weather[id]['temp']}}&#8457;, {{weather[id]['description']}}</td>
         </tr>
         {% endfor %}
     </tbody>

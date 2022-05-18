@@ -12,6 +12,7 @@
             <th>Unit</th>
             <th>Unit Cost</th>
             <th>Warehouse</th>
+            <th>Weather</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,8 @@
             <td>{{item.unit}}</td>
             <td>{{item.unit_cost}}</td>
             <td><a href="/warehouse/{{item.warehouse.warehouse_id}}">{{item.warehouse.city_name}}({{item.warehouse.city_code}})</a></td>
+            {% set id = item.warehouse.warehouse_id %}
+            <td>{{weather[id]['temp']}}&#8457;, {{weather[id]['description']}}</td>
         </tr>
         {% endfor %}
     </tbody>
